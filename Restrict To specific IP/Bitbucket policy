@@ -1,0 +1,37 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowGetObj",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::employee-data-hrm1/*",
+            "Condition": {
+                "IpAddress": {
+                    "aws:SourceIp": [
+                        "119.155.154.156",
+                        "58.65.170.94",
+                        "58.65.176.163"
+                    ]
+                }
+            }
+        },
+        {
+            "Sid": "DenyGetObj",
+            "Effect": "Deny",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::employee-data-hrm1/*",
+            "Condition": {
+                "NotIpAddress": {
+                    "aws:SourceIp": [
+                        "119.155.154.156",
+                        "58.65.170.94",
+                        "58.65.176.163"
+                    ]
+                }
+            }
+        }
+    ]
+}
